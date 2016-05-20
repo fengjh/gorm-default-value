@@ -19,17 +19,35 @@ Gorm takes the default value back from database after you create a new record wi
 
 ## Test Result
 
-    === RUN   TestCreateProductPriceWithDefaultValue
+    === RUN   TestCreateProductWithNoValueSpecified
     BeforeCreate --> 0
+    BeforeCreate -->
     AfterCreate --> 0.01
+    AfterCreate --> clothing
     BeforeCreateTransactionCommit --> 0.01
+    BeforeCreateTransactionCommit --> clothing
     AfterCreateTransactionCommit --> 0.01
-    --- PASS: TestCreateProductPriceWithDefaultValue (0.00s)
-    === RUN   TestSaveProductPriceWithDefaultValue
+    AfterCreateTransactionCommit --> clothing
+    --- PASS: TestCreateProductWithNoValueSpecified (0.00s)
+    === RUN   TestSaveProductPriceWithNoValueSpecified
     BeforeCreate --> 0
+    BeforeCreate -->
     AfterCreate --> 0.01
+    AfterCreate --> clothing
     BeforeCreateTransactionCommit --> 0.01
+    BeforeCreateTransactionCommit --> clothing
     AfterCreateTransactionCommit --> 0.01
-    --- PASS: TestSaveProductPriceWithDefaultValue (0.00s)
+    AfterCreateTransactionCommit --> clothing
+    --- PASS: TestSaveProductPriceWithNoValueSpecified (0.00s)
+    === RUN   TestCreateProductPriceWithZeroValueSpecified
+    BeforeCreate --> 0
+    BeforeCreate -->
+    AfterCreate --> 0.01
+    AfterCreate --> clothing
+    BeforeCreateTransactionCommit --> 0.01
+    BeforeCreateTransactionCommit --> clothing
+    AfterCreateTransactionCommit --> 0.01
+    AfterCreateTransactionCommit --> clothing
+    --- PASS: TestCreateProductPriceWithZeroValueSpecified (0.00s)
     PASS
-    ok  	github.com/fengjh/gorm-default-value	0.072s
+    ok  	github.com/fengjh/gorm-default-value	0.075s
