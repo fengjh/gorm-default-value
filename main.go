@@ -19,29 +19,41 @@ var (
 
 type Product struct {
 	gorm.Model
-	Name     string  `sql:"not null"`
-	Price    float64 `sql:"not null;default:'0.01'"`
-	Category string  `sql:"not null;default:'clothing'"`
+	Name     string `sql:"not null"`
+	Category string `sql:"not null;default:'clothing'"`
 }
 
 func (p *Product) BeforeCreate(scope *gorm.Scope) {
-	fmt.Printf("BeforeCreate --> %v\n", p.Price)
 	fmt.Printf("BeforeCreate --> %v\n", p.Category)
 }
 
 func (p *Product) AfterCreate(scope *gorm.Scope) {
-	fmt.Printf("AfterCreate --> %v\n", p.Price)
 	fmt.Printf("AfterCreate --> %v\n", p.Category)
 }
 
 func (p *Product) BeforeCreateTransactionCommit(scope *gorm.Scope) {
-	fmt.Printf("BeforeCreateTransactionCommit --> %v\n", p.Price)
 	fmt.Printf("BeforeCreateTransactionCommit --> %v\n", p.Category)
 }
 
 func (p *Product) AfterCreateTransactionCommit(scope *gorm.Scope) {
-	fmt.Printf("AfterCreateTransactionCommit --> %v\n", p.Price)
 	fmt.Printf("AfterCreateTransactionCommit --> %v\n", p.Category)
+}
+
+func main() {
+	productWithNoValue := Product{Name: "Create product with no value specified"}
+
+	fmt.Println("Create product with no value specified: ")
+	if err := DB.Create(&productWithNoValue).Error; err != nil {
+		panic(err)
+	}
+
+	fmt.Println("")
+
+	fmt.Println("Create product with zero value specified: ")
+	productWithZeroValue := Product{Name: "Create product with zero value specified"}
+	if err := DB.Create(&productWithZeroValue).Error; err != nil {
+		panic(err)
+	}
 }
 
 func init() {
