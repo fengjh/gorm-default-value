@@ -67,7 +67,7 @@ func TestSaveProductPriceWithNoValueSpecified(t *testing.T) {
 }
 
 func TestCreateProductPriceWithZeroValueSpecified(t *testing.T) {
-	product := Product{Name: "Product with zero value specified", Price: 0.0}
+	product := Product{Name: "Product with zero value specified", Price: 0.0, Category: ""}
 
 	if product.Price != 0 {
 		t.Fatalf("expected new product's price is zero, but got %v", product.Price)
